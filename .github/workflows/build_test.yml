@@ -1,0 +1,48 @@
+name: Build and Test
+
+on: 
+  push:
+    branches:
+      - practice-build-test
+  pull_request: 
+    branches: 
+      - practice-build-test
+
+
+jobs: 
+  Build-and-test:
+    name: Install Build Test
+    runs-on: ubuntu-latest
+
+    strategy: 
+      matrix: 
+        node-version: [18.x, 20.x]
+      fail-fast: true
+
+    
+    steps: 
+      - name: Checkout Source COde
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version}}
+          cache: 'npm'
+        
+      - name : Install dependies using the ci 
+        run: npm ci
+      
+      - name: Run test Suite
+        run: npm test
+      
+      - name: Build application
+        run: npm run build
+
+      - name: Verify Build Output Exists
+        run : |
+          echo "Checking the dist/ folder..."
+          ls -ls dist/
+          echo "Build Verified Sucessfully"
+      
+
