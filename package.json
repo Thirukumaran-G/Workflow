@@ -1,0 +1,16 @@
+{
+  "name": "my-cicd-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest --forceExit",
+    "build": "mkdir -p dist && cp -r src/* dist/"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}

@@ -1,0 +1,20 @@
+Name: CI Block
+
+on: 
+  push: 
+    branches:
+        - main
+
+jobs: 
+  echo-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello
+        run: echo "Workflow Triggered"
+      
+      - name: Show Environment Variabke
+        run: |
+          echo "Currenr date:   $(date)"
+          echo "Working Directory: $(PWD)"
+          echo "Runner OS: $Runner_OS"
