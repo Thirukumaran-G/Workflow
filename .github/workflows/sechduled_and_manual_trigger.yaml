@@ -21,7 +21,7 @@ on:
             
             version_tag:
                 description: 'Version tag (e.g. v1.0.0)'
-                required: true
+                required: false
                 type: string
 
     schedule:
@@ -36,7 +36,7 @@ jobs:
     manual-deploy:
         name: Manual Deploy Job
         runs-on: ubuntu-latest
-        if: github.event_name == 'workflow_disptch'
+        if: github.event_name == 'workflow_dispatch'
 
         steps:
             - name: Checkout code
@@ -88,7 +88,7 @@ jobs:
         
         steps:
             - name: Checkout code
-              uses: actions/setup-node@v4
+              uses: actions/checkout@v4
             
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -140,6 +140,6 @@ jobs:
                 npm ci
                 npm test
                 npm run build
-                
+
             
             
